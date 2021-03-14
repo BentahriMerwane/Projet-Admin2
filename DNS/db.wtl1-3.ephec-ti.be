@@ -1,5 +1,5 @@
 $TTL 604800
-@	IN	SOA	wt3.ephec-ti.be.	root.wt3.ephec-ti.be. (
+@	IN	SOA	wtl1-3.ephec-ti.be.	root.wtli-3.ephec-ti.be. (
 	; Ces lignes sont de simples lignes de configuration. 
 		    
 	2013020905	; Serial
@@ -9,7 +9,7 @@ $TTL 604800
 	604800		  ; Minimum TTL en X jours.
 
 ; Resource Record pour le Name Server
-@	IN	NS	wt3.ephec-ti.be.
+@	IN	NS	wtl1-3.ephec-ti.be.
 @	IN	A	135.125.101.215
 
 ; Resource Record pour le Web
@@ -23,4 +23,4 @@ intranet	IN	135.125.101.215
 
 ; Resource Record pour le mail
 mail	IN	A	135.125.101.215
-mail	IN	MX	215	mail.wt3.ephec-ti.be. 
+mail	IN	MX	215	mail.wtl1-3.ephec-ti.be. 
