@@ -1,4 +1,4 @@
 options{
 
-        directory "/var/bind";
+        directory "/etc/bind";
 }
