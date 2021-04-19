@@ -1,4 +1,0 @@
-zone "tl1-3.ephec-ti.be" {
-    type master;
-    file "/etc/bind/zones/db.tl1-3.ephec-ti.be";
-};
