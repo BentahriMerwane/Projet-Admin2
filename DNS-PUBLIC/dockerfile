@@ -1,0 +1,23 @@
+#Notre image seras issus d'un image ubuntu
+FROM ubuntu:bionic
+
+# verification de MAJ,installation de MAj,installions bind9 sur notre image
+RUN apt update && apt upgrade -y && apt install bind9 bind9utils dnsutils  -y
+
+#Copie les fichiers de configuration pré-configurer
+
+COPY named.conf /etc/bind/
+COPY named.conf.options /etc/bind/
+COPY named.conf.local /etc/bind/
+
+COPY db.l1-3.ephec-ti.be /etc/bind/zones/
+
+
+#Ouverture du port 53 en UDP/TCP
+EXPOSE 53/udp
+EXPOSE 53/tcp
+
+#commande qui permet au serveur la lecture de la configuration BINd9
+CMD named -g
+
+
