@@ -1,0 +1,52 @@
+
+--COMMANDE CREATION RESEAU------------:
+docker network create --driver bridge --subnet 172.16.0.0/24 reseau-interne-serveur
+docker network create -d bridge  --subnet=172.16.1.0/24 --gateway=172.16.1.254 reseau-DM
+
+-----creation image -----------------:
+
+docker build -t dns .
+docker build -t dns-externe:dns-externe .
+
+docker build -t soa-externe .
+
+
+
+-------Creation-conteneur-------------:
+
+docker run -tid --network reseau-interne-serveur --ip 172.16.0.4 --name serveur-dns serveur-dns
+docker exec -ti serveur-dns bash
+
+docker run -tid -p 127.0.0.1:53:53/udp -p 127.0.0.1:53:53/tcp --name SOA-EXTERNE --network reseau-DMZ --ip 172.16.1.6  dns-externe:dns-externe
+docker exec -ti SOA-EXTERNE bash 
+
+docker run -tid -p 127.0.0.1:53:53/udp -p 127.0.0.1:53:53/tcp --name SOA-EXTERNE --network reseau-DMZ --ip 172.16.1.6  soa-externe
+
+ docker run -tid -p 135.125.101.215:53:53/udp -p 135.125.101.215:53:53/tcp --name SOA-EXTERNE --network reseau-DMZ --ip 172.16.1.6  soa-externe
+ docker run -tid -p 135.125.101.215:53:53/udp -p 135.125.101.215:53:53/tcp --name SOA-EXTERNE --network reseau-DMZ --ip 172.16.1.6  soa-externe
+
+docker exec -ti SOA-EXTERNE bash 
+
+
+
+------CLI-CONTENEUR---------:
+apt install dnsutils
+dig @localhost www.tl1-3.ephec-ti.be.
+
+
+pusher sur docker : 
+
+docker login
+docker tag blackbuu13/projet-admin-2:serveur-dns
+docker tag serveur-dns blackbuu13/projet-admin-2:dns
+docker pull blackbuu13/projet-admin-2:dns 
+docker push blackbuu13/projet-admin-2:dns
+
+
+docker tag dns-externe:dns-externe  blackbuu13/projet-admin-2:dns-externe
+docker push blackbuu13/projet-admin-2:dns-externe
+
+
+
+docker tag soa-externe:latest blackbuu13/projet-admin-2:soa-externe
+docker push blackbuu13/projet-admin-2:soa-externe
