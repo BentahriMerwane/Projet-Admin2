@@ -1,0 +1,9 @@
+The command '/bin/sh -c ./configure' returned a non-zero code: 12
+The command '/bin/sh -c make' returned a non-zero code: 2
+Tous mettre dans la même commande
+
+
+[Apr 24 18:04:46] ERROR[1]: loader.c:2396 load_modules: res_pjsip_transport_websocket declined to load.
+[Apr 24 18:04:46] ERROR[1]: loader.c:2396 load_modules: cdr_sqlite3_custom declined to load.
+[Apr 24 18:04:46] ERROR[1]: loader.c:2396 load_modules: cel_sqlite3_custom declined to load.
+
