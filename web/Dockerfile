@@ -5,8 +5,8 @@ RUN apt upgrade -y
 RUN apt-get install -y php libapache2-mod-php php-mysql
 RUN mkdir /usr/local/apache2/htdocs/www
 RUN mkdir /usr/local/apache2/htdocs/b2b
-RUN apt install -y vim
-RUN apt install -y net-tools
+#RUN apt install -y vim
+#RUN apt install -y net-tools
 
 EXPOSE 80
 
