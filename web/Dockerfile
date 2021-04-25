@@ -8,6 +8,7 @@ RUN mkdir /usr/local/apache2/htdocs/b2b
 RUN apt install -y vim
 RUN apt install -y net-tools
 
+EXPOSE 80
 
 COPY www/index.html /usr/local/apache2/htdocs/www
 COPY b2b/index.php /usr/local/apache2/htdocs/b2b
