@@ -1,5 +1,14 @@
 FROM httpd:2.4
-RUN apt update && apt upgrade -y  && apt install -y php libapache2-mod-php #&& systemctl restart apache2
 
-COPY ./public-html/ /usr/local/apache2/htdocs/
-COPY apache2.conf /usr/local/apache2/conf/
+RUN apt update 
+RUN apt upgrade -y 
+RUN apt-get install -y php libapache2-mod-php php-mysql
+RUN mkdir /usr/local/apache2/htdocs/www
+RUN mkdir /usr/local/apache2/htdocs/b2b
+RUN apt install -y vim
+RUN apt install -y net-tools
+
+
+COPY www/index.html /usr/local/apache2/htdocs/www
+COPY b2b/index.php /usr/local/apache2/htdocs/b2b
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
