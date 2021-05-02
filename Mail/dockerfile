@@ -1,3 +1,8 @@
 From ubuntu 
 
+# verification de Maj, installation de Maj 
+RUN apt update && apt upgrade -y 
 
+
+#Ouverture des ports 
+EXPOSE 25 587
