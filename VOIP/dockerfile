@@ -28,7 +28,7 @@ WORKDIR /usr/src/asterisk
 RUN cd /usr/src/asterisk
 RUN wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
 RUN tar -xvzf asterisk-16-current.tar.gz
-RUN cd asterisk-16.17.0 && ./configure --with-jansson-bundled && make && make install && make samples && make config
+RUN cd asterisk-16.18.0 && ./configure --with-jansson-bundled && make && make install && make samples && make config
 
 COPY sip.conf /etc/asterisk
 COPY rtp.conf /etc/asterisk
