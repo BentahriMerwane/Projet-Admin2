@@ -1,0 +1,28 @@
+version: '2'
+services:
+    apache2:
+        build: ./apache2
+        hostname: l1-3.ephec-ti.be
+        restart: always
+        volumes:
+            - etcletsencrypt:/etc/letsencrypt
+            - varletsencrypt:/var/lib/letsencrypt
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            default:
+                ipv4_address: 172.16.1.7
+        environment:
+            LETS_ENCRYPT_EMAIL: "he201794@students.ephec.be"
+            LETS_ENCRYPT_DOMAINS: "l1-3.ephec-ti.be,www.l1-3.ephec-ti.be,b2b.l1-3.ephec-ti.be"
+        container_name: web
+
+volumes:
+    varletsencrypt:
+    etcletsencrypt:
+
+networks:
+    default:
+        external:
+            name: reseau-DMZ
