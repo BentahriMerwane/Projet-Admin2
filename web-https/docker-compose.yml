@@ -18,6 +18,14 @@ services:
             LETS_ENCRYPT_DOMAINS: "l1-3.ephec-ti.be,www.l1-3.ephec-ti.be,b2b.l1-3.ephec-ti.be"
         container_name: web
 
+    certbot:
+        image: certbot/certbot:latest
+        entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+        volumes:
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/logs:/var/log/letsencrypt
+            - ./certbot/data:/var/www/certbot
+
 volumes:
     varletsencrypt:
     etcletsencrypt:
